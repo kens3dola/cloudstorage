@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/bootstrap.min.css}">
+
+    <title>My Note</title>
+</head>
+<body class="p-3 mb-2 bg-light text-black">
+<div class="container">
+    <h3>Note details</h3>
+    <div class="form-group" style="margin-top: 0.5em;">
+        <label><a th:href="@{/home}">Go back</a></label>
+    </div>
+    <form th:action="@{'/notes/' + ${note.noteid} + '/update' }" action="#" th:method="PUT" th:object="${note}">
+        <input type="hidden" name="noteId" id="note-id">
+        <div class="form-group">
+            <label for="note-title" class="col-form-label">Title</label>
+            <input type="text" name= "notetitle" th:field="*{notetitle}" class="form-control" id="note-title" maxlength="20" required>
+        </div>
+        <div class="form-group">
+            <label for="note-description" class="col-form-label">Description</label>
+            <textarea class="form-control" name="noteDescription" th:field="*{notedescription}" id="note-description" rows="5" maxlength="1000" required></textarea>
+        </div>
+        <button id="noteSubmit" type="submit" class="btn badge-primary">Update</button>
+    </form>
+</div>
+</body>
